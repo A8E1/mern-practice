@@ -1,4 +1,4 @@
-//utilizes the dotenv package
+//utilizes the dotenv package, adds the vars in .env to process obj
 require('dotenv').config()
 
 //utilizes the express package 
@@ -7,7 +7,16 @@ const express = require('express')
 //creates the express application
 const app = express()
 
-//react to requests aka routes
+//middleware
+app.use((req,res,next)=>{
+    console.log(req.method, req.path)
+    //necessary line in order to go to the next piece of middleware
+    next()
+    //w/o next() line, it won't go to the responding method 
+})
+
+
+//react to requests aka routes, considered a form of middleware
 app.get('/', (req, res) => {
     res.json({
         message: "mama we made it"
@@ -19,8 +28,7 @@ app.get('/', (req, res) => {
 
 
 //used to listen to requests to the server
-app.listen(4000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("terry")
 })
 
-process.env
