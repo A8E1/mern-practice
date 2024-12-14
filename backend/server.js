@@ -1,3 +1,6 @@
+//utilizes the dotenv package
+require('dotenv').config()
+
 //utilizes the express package 
 const express = require('express')
 
@@ -19,3 +22,5 @@ app.get('/', (req, res) => {
 app.listen(4000, ()=>{
     console.log("terry")
 })
+
+process.env
